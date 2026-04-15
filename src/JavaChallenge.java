@@ -1,5 +1,3 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.util.Scanner;
 
 public class JavaChallenge {
@@ -27,8 +25,8 @@ public class JavaChallenge {
                            """);
     }
 
-    public static int lerValor(String mensagem, Scanner scanner){
-        int valorInformado;
+    public static double lerValor(String mensagem, Scanner scanner){
+        double valorInformado;
 
         System.out.println(mensagem);
         valorInformado = scanner.nextInt();
@@ -58,12 +56,16 @@ public class JavaChallenge {
 
         if(saldoAtual < valorTransferencia){
             novoSaldo = saldoAtual;
-            System.out.println("\nNão há saldo suficiente para fazer essa transferência.");
+            System.out.println("\nSaldo insuficiente para fazer essa transferência.");
         } else {
             novoSaldo = saldoAtual - valorTransferencia;
         }
 
         return novoSaldo;
+    }
+
+    public static void exibirSaldo(double saldo){
+        System.out.printf("\nSaldo atual R$%.2f%n", saldo);
     }
 
     public static void main(String[] args) {
@@ -80,19 +82,19 @@ public class JavaChallenge {
         do{
             exibeMenu();
 
-            opcaoDesejada = lerValor("Digite a opção desejada:", scanner);
+            opcaoDesejada = (int) lerValor("Digite a opção desejada:", scanner);
 
             switch (opcaoDesejada) {
                 case 1:
-                    System.out.println(String.format("\nO saldo atual é R$%.2f", saldo));
+                    exibirSaldo(saldo);
                     break;
                 case 2:
                     saldo = receberTransferencia(saldo, scanner);
-                    System.out.println(String.format("\nO saldo atualizado R$%.2f", saldo));
+                    exibirSaldo(saldo);
                     break;
                 case 3:
                     saldo = realizarTransferencia(saldo, scanner);
-                    System.out.println(String.format("\nO saldo atualizado R$%.2f", saldo));
+                    exibirSaldo(saldo);
                     break;
                 case 4:
                     System.out.println("\nPrograma encerrado...");
